@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of Axure RP 8 and then uploads to the JSS</string>
 	<key>Identifier</key>
-	<string>com.github.georgecm12-recipes.pkg.AxureRP8</string>
+	<string>com.github.georgecm12-recipes.jss.AxureRP8</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
