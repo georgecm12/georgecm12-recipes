@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Fetches the latest Sassafras KeyClient Mac installer and uploads to
+JSS. Additionally, fetch the k2clientconfig tool from the Sassafras website
+for the purposes of customizing the installer.
+
+This recipe supports KeyClient 7.0 and up only. See SassafrasK2Client.download
+for details on the REVISION Input variable, which you may wish to override.
+
+K2CLIENTCONFIG_OPTIONS is a string that should be overridden with command-line
+options to the 'k2clientconfig' tool. No sanity checking is performed beyond
+what's done by k2clientconfig. The recipe includes one suggested default, more
+documentation here:
+http://www.sassafras.com/hrl/7.2/k2clientconfigM.html
+
+There are k2clientconfig options to kill KeyAccess before installation, and to
+start it after installation, implying we might not necessarily need a logout.
+Some testing shows that when these options are used, the installation is still
+not in a consistent state. Requiring a restart seems the only sane choice for now,
+but it should be further investigated.
+
+We use a separate installs item for KeyAccess.app, because the options passed
+to k2clientconfig may alter which packages are installed, and therefore the
+receipts array.
+
+Sassafras uses two decimals in their mpkg versions (skipping the third) but
+uses three decimals everywhere else (webpage, actual bundle files, preference
+pane, etc.), so we use the three-decimal version.
+
+The 7.2.0.3 installer has a known issue with version numbers in the pkg
+components, but since we generate an installs item for KeyAccess.app already,
+we use its version in the pkginfo.
+
+(The above text is pulled directly from the SassfrasK2Client.munki recipe.)</string>
+	<key>Identifier</key>
+	<string>com.github.georgecm12.jss.SassafrasK2Client</string>
+	<key>Input</key>
+	<dict>
+        <key>K2CLIENTCONFIG_OPTIONS</key>
+        <string>-s 2 -h keyserver.my.org -g yes -c yes -l yes</string>
+		<key>NAME</key>
+		<string>SassafrasK2Client</string>
+		<key>CATEGORY</key>
+		<string>Utility</string>
+		<key>GROUP_NAME</key>
+		<string>%NAME%-update-smart</string>
+		<key>GROUP_TEMPLATE</key>
+		<string>SassafrasK2ClientSmartGroupTemplate.xml</string>
+		<key>POLICY_CATEGORY</key>
+		<string>Testing</string>
+		<key>POLICY_TEMPLATE</key>
+		<string>PolicyTemplate.xml</string>
+		<key>SELF_SERVICE_DESCRIPTION</key>
+		<string>K2 is an integrated software asset management solution that enables IT managers to automatically audit, manage, and control their software and hardware assets.</string>
+		<key>SELF_SERVICE_ICON</key>
+		<string>SassafrasK2Client.png</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>0.4.0</string>
+	<key>ParentRecipe</key>
+	<string>com.github.georgecm12.pkg.SassafrasK2Client</string>
+    <key>Process</key>
+    <array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>category</key>
+				<string>%CATEGORY%</string>
+				<key>extension_attributes</key>
+				<array>
+					<dict>
+						<key>ext_attribute_path</key>
+						<string>SassafrasK2ClientExtensionAttribute.xml</string>
+					</dict>
+				</array>
+				<key>groups</key>
+				<array>
+					<dict>
+						<key>name</key>
+						<string>%GROUP_NAME%</string>
+						<key>smart</key>
+						<true/>
+						<key>template_path</key>
+						<string>%GROUP_TEMPLATE%</string>
+					</dict>
+				</array>
+				<key>policy_category</key>
+				<string>%POLICY_CATEGORY%</string>
+				<key>policy_template</key>
+				<string>%POLICY_TEMPLATE%</string>
+				<key>prod_name</key>
+				<string>%NAME%</string>
+				<key>self_service_description</key>
+				<string>%SELF_SERVICE_DESCRIPTION%</string>
+				<key>self_service_icon</key>
+				<string>%SELF_SERVICE_ICON%</string>
+			</dict>
+			<key>Processor</key>
+			<string>JSSImporter</string>
+		</dict>
+	</array>
+</dict>
+</plist>
