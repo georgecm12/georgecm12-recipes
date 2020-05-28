@@ -40,7 +40,7 @@
                 <string>1</string>
             </dict>
             <key>Processor</key>
-            <string>SHAChecksum</string>
+            <string>com.facebook.autopkg.shared/SHAChecksum</string>
         </dict>
 		<dict>
 			<key>Arguments</key>
