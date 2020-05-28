@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Builds a package containing the Google Chrome Master Preferences file.</string>
+    <key>Identifier</key>
+    <string>com.github.georgecm12.pkg.GoogleChromeMasterPreferences</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>Google Chrome Master Preferences</string>
+        <key>VERSION</key>
+        <string>1.0</string>
+        <key>PKG_ID</key>
+        <string>com.github.georgecm12.pkg.GoogleChromeMasterPreferences</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.2.0</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                <key>pkgdirs</key>
+                <dict>
+                    <key>Library</key>
+                    <string>0755</string>
+                    <key>Library/Google</key>
+                    <string>0775</string>
+                </dict>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>Copier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_path</key>
+                <string>%RECIPE_DIR%/Google Chrome Master Preferences</string>
+                <key>destination_path</key>
+                <string>%pkgroot%/Library/Google/Google Chrome Master Preferences</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PkgCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_request</key>
+                <dict>
+                    <key>pkgname</key>
+                    <string>%NAME%-%VERSION%</string>
+                    <key>id</key>
+                    <string>%PKG_ID%</string>
+                    <key>version</key>
+                    <string>%VERSION%</string>
+                    <key>options</key>
+                    <string>purge_ds_store</string>
+                </dict>
+            </dict>
+        </dict>
+    </array>
+</dict>
+</plist>

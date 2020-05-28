@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Tests variable substitution from the SHAChecksum processor.</string>
+	<key>Identifier</key>
+	<string>com.github.georgecm12.test.VariableSubstitution</string>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string>Google Chrome Master Preferences</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>0.2.0</string>
+	<key>Process</key>
+	<array>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>source_file</key>
+                <string>%RECIPE_DIR%/Google Chrome Master Preferences</string>
+                <key>checksum_type</key>
+                <string>1</string>
+            </dict>
+            <key>Processor</key>
+            <string>SHAChecksumFixed</string>
+        </dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>file_content</key>
+				<string>%checksum%</string>
+				<key>file_path</key>
+				<string>%RECIPE_CACHE_DIR%/test_output.txt</string>
+			</dict>
+			<key>Processor</key>
+			<string>FileCreator</string>
+		</dict>
+	</array>
+</dict>
+</plist>
