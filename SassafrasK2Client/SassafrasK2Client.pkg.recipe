@@ -64,7 +64,7 @@ most of the rest of this recipe.)</string>
             <key>Arguments</key>
             <dict>
                 <key>flat_pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/downloads/K2Client.pkg</string>
+                <string>%RECIPE_CACHE_DIR%/downloads/ksp-client.pkg</string>
                 <key>destination_path</key>
                 <string>%RECIPE_CACHE_DIR%/dist-unpack</string>
             </dict>
