@@ -7,8 +7,7 @@
 fetch the k2clientconfig tool from the Sassafras website for the purposes of 
 customizing the installer.
 
-This recipe supports KeyClient 7.0 and up only. See SassafrasK2Client.download
-for details on the REVISION Input variable, which you may wish to override.
+This recipe supports KeyClient 7.7 and up only. 
 
 K2CLIENTCONFIG_OPTIONS is a string that should be overridden with command-line
 options to the 'k2clientconfig' tool. No sanity checking is performed beyond
@@ -30,10 +29,6 @@ Sassafras uses two decimals in their mpkg versions (skipping the third) but
 uses three decimals everywhere else (webpage, actual bundle files, preference
 pane, etc.), so we use the three-decimal version.
 
-The 7.2.0.3 installer has a known issue with version numbers in the pkg
-components, but since we generate an installs item for KeyAccess.app already,
-we use its version in the pkginfo.
-
 (The above text is pulled directly from the SassfrasK2Client.munki recipe, as is
 most of the rest of this recipe.)</string>
 	<key>Identifier</key>
@@ -48,7 +43,7 @@ most of the rest of this recipe.)</string>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.download.sassafras-k2client</string>
+	<string>com.github.georgecm12.download.sassafras-k2client</string>
     <key>Process</key>
     <array>
         <dict>
